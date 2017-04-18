@@ -1,0 +1,16 @@
+{
+  "name": "trip_sorter/trip_sorter",
+  "description": "Solution for Trip Sorter Problem",
+  "keywords": [],
+  "type": "project",
+  "require-dev": {
+    "php": ">=5.5.9",
+	"phpdocumentor/phpdocumentor": "2.*"
+  },
+  "autoload": {
+    "classmap": [
+		"src/"
+		"src/classes/"
+    ]
+  }
+}
