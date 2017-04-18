@@ -19,7 +19,7 @@ class Sorttrip {
 	 * @method void addTrip
 	 * 
 	 * @param mixed[] $card Array structure containing details of journey.
-	 * 
+	 * @return mixed[]
 	 * Creating various data structures here in global varibale to avoid loops while sorting in future.
 	 */
 	function sortAllTrips($cards = array()) {
@@ -33,7 +33,7 @@ class Sorttrip {
 			return static::MSG_MULTIPLE_ARRIVAL;
 		
 		//Actual sort algorithm
-		$this->sortCards($cards, $start, $end);
+		return $this->sortCards($cards, $start, $end);
 	}
 	
 	/**
@@ -74,13 +74,21 @@ class Sorttrip {
 	 * @return mixed[]
 	 */
 	private function sortCards($cards, $startPoint, $endPoint) {
-		$sorted = array();
+		require_once 'Bus.php';
+		require_once 'Train.php';
+		require_once 'Flight.php';
+		$sortedMsgs = array();
 		foreach($cards['trips'] as $station => $details) {
-			$sorted[] = $cards['trips'][$startPoint];
+			$trip = $cards['trips'][$startPoint];
+			$className = $trip['type'];
+			$transportType = new $className($trip);
+			$sortedMsgs[] = $transportType->getMessage();
 			$startPoint = $cards['trips'][$startPoint]['arrival'];
 			if($startPoint == $endPoint)
 				break;
 		}
-		print_r($sorted);
+		if(count($sortedMsgs))
+			$sortedMsgs[] = $transportType::MESSAGE_LAST;
+		return $sortedMsgs;
 	}
 }

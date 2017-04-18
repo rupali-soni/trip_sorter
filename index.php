@@ -62,4 +62,4 @@ $trip->sortTrips();
  * Finally print sorted boarding cards in the output
  * 
  */
-//$trip->printOutput();
+echo $trip->printOutput();
