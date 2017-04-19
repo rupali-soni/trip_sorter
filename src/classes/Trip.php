@@ -21,6 +21,32 @@ class Trip {
 	protected  $_sortedTripMsgs = array();
 	
 	/**
+	 * @method void setUniversal
+	 *
+	 * @param mixed[] $card
+	 * @param string $type
+	 *
+	 */
+	function setUniversal($card, $type) {
+		if($type == 'trips')
+			$this->_universal['trips'][$card['departure']] = $card;
+		else if($type == 'departures')
+			$this->_universal['departures'][] = $card['departure'];
+		else if($type == 'arrivals')
+			$this->_universal['arrivals'][] = $card['arrival'];
+	}
+	
+	/**
+	 * @method void getUniversal
+	 *
+	 * $return String
+	 *
+	 */
+	function getUniversal() {
+		return $this->_universal;
+	}
+	
+	/**
 	 * @method void setSortedTripMsgs
 	 *
 	 * @param mixed[] $msgArr
@@ -48,9 +74,17 @@ class Trip {
 	 * Creating various data structures here in global varibale to avoid loops while sorting in future.
 	 */
 	function addTrip($card = array()) {
-		$this->_universal['trips'][$card['departure']] = $card;
-		$this->_universal['departures'][] = $card['departure'];
-		$this->_universal['arrivals'][] = $card['arrival'];
+		if(array_key_exists('departure', $card)) {
+			$this->setUniversal($card, 'trips');
+			$this->setUniversal($card, 'departures');
+			$this->setUniversal($card, 'arrivals');
+		} else {
+			foreach ($card as $bordingCard) {
+				$this->setUniversal($bordingCard, 'trips');
+				$this->setUniversal($bordingCard, 'departures');
+				$this->setUniversal($bordingCard, 'arrivals');
+			}
+		}
 	}
 	
 	/**
@@ -61,7 +95,7 @@ class Trip {
 	function sortTrips() {
 		require_once '/src/classes/Sorttrip.php';
 		$sortTrip = new Sorttrip();
-		$sortedTrips = $sortTrip->sortAllTrips($this->_universal);
+		$sortedTrips = $sortTrip->sortAllTrips($this->getUniversal());
 		if(count($sortedTrips))
 			$this->setSortedTripMsgs($sortedTrips);
 	}
@@ -74,7 +108,7 @@ class Trip {
 	function printOutput() {
 		$msgs = $this->getSortedTripMsgs();
 		if(count($msgs))
-			return implode(PHP_EOL.PHP_EOL, $msgs);
+			return '-- '.implode(PHP_EOL.PHP_EOL.'-- ', $msgs);
 		else
 			return static::INVALID_DATA;
 	}

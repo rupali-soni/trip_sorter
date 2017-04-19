@@ -1,0 +1,46 @@
+<?php
+/**
+ * Class AbstractTransporttype
+ *
+ * @package src\classes
+ */
+abstract class AbstractTransporttype
+{
+    /**
+     * @var string
+     */
+    protected $departure;
+    /**
+     * @var string
+     */
+    protected $arrival;
+    /**
+     * @var string
+     */
+    protected $seatNum;
+    /**
+     * Constant
+     */
+    const MESSAGE_LAST = 'You have arrived at your final destination.';
+    
+    /**
+     * @param array $trip
+     */
+    public function __construct(array $trip)
+    {
+        foreach ($trip as $key => $value) {
+            $property = lcfirst($key);
+            if (property_exists($this, $property)) {
+                $this->{$property} = $value;
+            }
+        }
+    }
+    
+    /**
+     * Return a message
+     * Abstract method to be implemented by various types of transportation types
+     * Show appropriate message with departure and arrival details
+     * @return string
+     */
+    public abstract function getMessage();
+}
