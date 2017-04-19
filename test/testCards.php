@@ -1,5 +1,6 @@
 <?php
-$bordingCards[] = array(
+$bordingCards = array ( 
+	array(
 		"type"			=> "Flight",
 		"departure"		=> "Gerona Airport",
 		"arrival"		=> "Stockholm",
@@ -7,25 +8,22 @@ $bordingCards[] = array(
 		"gateNum"		=> "45B",
 		"seatNum"		=> "3A",
 		"baggage"		=> "344"
-);
-
-$bordingCards[] = array(
+	),
+	array(
 		"type"		=> "Train",
 		"departure"	=> "Madrid",
 		"arrival"	=> "Barcelona",
 		"trainNum"	=> "78A",
 		"seatNum"	=> "45B"
-);
-
-$bordingCards[] = array(
+	),
+	array(
 		"type"		=> "Bus",
 		"departure"	=> "Barcelona",
 		"arrival"	=> "Gerona Airport",
 		"busNum"	=> "",
 		"seatNum"	=> ""
-);
-
-$bordingCards[] = array(
+	),
+	array(
 		"type"		=> "Flight",
 		"departure"	=> "Stockholm",
 		"arrival"	=> "New York JFK",
@@ -33,4 +31,5 @@ $bordingCards[] = array(
 		"gateNum"	=> "22",
 		"seatNum"	=> "7B",
 		"baggage"	=> ""
+	)
 );
