@@ -1,7 +1,7 @@
 # trip_sorter
 Solution for trip sorter problem
 
-##Installation
+## Installation
 
 ```
 - Clone git repository: https://github.com/rupali-soni/trip_sorter.git
@@ -9,13 +9,13 @@ Solution for trip sorter problem
 - Go to project root directory and run command **composer install**
 ```
 
-##Execution
+## Execution
 
 ```
 - Navigate to project directory in comand prompt or terminal and run **php index.php**
 ```
 
-##Output
+## Output
 
 For current test case, below will be the output
 ```
@@ -31,14 +31,14 @@ For current test case, below will be the output
 
 ```
 
-##Change test cases
+## Change test cases
 
 ```
 - Navigate to folder **/test**
 - open testCards.php and enter your own trip details
 ```
 
-##Usage
+## Usage
 
 ```
 //Create object of Trip class
