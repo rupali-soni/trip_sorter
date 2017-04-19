@@ -53,3 +53,11 @@ $trip->sortTrips();
 //Get the text output
 $trip->printOutput();
 ```
+
+## Key Features
+
+```
+- Created own data structure for arranging all the trip data.
+- Used only one for loop to sort all the trips ('/src/classes/Sorttrip->sortCards()')
+- Used another loop in index.php to add all the boarding cards.
+```
