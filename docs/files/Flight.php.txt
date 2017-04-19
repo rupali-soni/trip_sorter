@@ -1,0 +1,54 @@
+<?php
+require_once '/src/classes/AbstractTransporttype.php';
+/**
+ * Class Flight
+ *
+ * @package src\classes
+ */
+class Flight extends AbstractTransporttype
+{
+	/**
+	 * @var string
+	 */
+	protected $flightNum;
+	
+	/**
+	 * @var string
+	 */
+	protected $gateNum;
+	
+	/**
+	 * @var string
+	 */
+	protected $baggage;
+	
+    const MESSAGE = 'From %s, take flight %s to %s. ';
+    const MESSAGE_GATE = 'Gate %s ';
+    const MESSAGE_SEAT = 'Seat %s.';
+    const MESSAGE_BAGGAGE = ' Baggage drop at ticket counter %s.';
+    const MESSAGE_BAGGAGE_DEFAULT = ' Baggage will we automatically transferred from your last leg.';
+    
+    /**
+     * Return a message for a trip defined in boarding card
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        $message = sprintf(
+            static::MESSAGE,
+            $this->departure,
+        	$this->flightNum,
+            $this->arrival
+        );
+        if($this->gateNum)
+        	$message .= sprintf(static::MESSAGE_GATE, $this->gateNum);
+        if($this->seatNum)
+        	$message .= sprintf(static::MESSAGE_SEAT, $this->seatNum);
+        if($this->baggage)
+        	$message .= sprintf(static::MESSAGE_BAGGAGE, $this->baggage);
+        else
+        	$message .= static::MESSAGE_BAGGAGE_DEFAULT;
+        return $message;
+    }
+}
