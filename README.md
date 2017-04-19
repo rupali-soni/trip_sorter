@@ -61,3 +61,7 @@ $trip->printOutput();
 - Used only one for loop to sort all the trips ('/src/classes/Sorttrip->sortCards()')
 - Used another loop in index.php to add all the boarding cards.
 ```
+
+## Document
+
+Document is available under /docs folder
